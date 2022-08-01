@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-import * as gameService from "../services/gameService"
-import { Game } from "./Game";
+import * as gameService from "../../services/gameService"
+import { Game } from "./LatestGame/LatestGame";
 
 export const Home = () => {
     const [games, setGames] = useState([]);

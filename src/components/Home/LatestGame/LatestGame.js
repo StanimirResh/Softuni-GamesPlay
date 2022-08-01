@@ -2,9 +2,9 @@ export const Game = (props) => {
     return (
         <div className="game">
             <div className="image-wrap">
-                <img alt="img" src={props.game.imageUrl} />
+                <img alt={props.game.title + 'img'} src={props.game.imageUrl} />
             </div>
-            <h3>{props.game.name}</h3>
+            <h3>{props.game.title}</h3>
             <div className="rating">
                 <span>☆</span>
                 <span>☆</span>
