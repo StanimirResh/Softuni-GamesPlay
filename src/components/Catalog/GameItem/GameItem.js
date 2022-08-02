@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const GameItem = (props) => {
     return (
         <div className="allGames">
@@ -5,9 +7,9 @@ export const GameItem = (props) => {
                     <img alt="img" src={props.game.imageUrl} />
                     <h6>{props.game.category}</h6>
                     <h2>{props.game.title}</h2>
-                    <a href="/" className="details-button">
+                    <Link to={"/catalog/" + props.game._id} className="details-button">
                         Details
-                    </a>
+                    </Link>
                 </div>
             </div>
     )

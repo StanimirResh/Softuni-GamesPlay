@@ -15,7 +15,7 @@ export const Game = (props) => {
                 <span>☆</span>
             </div>
             <div className="data-buttons">
-                <Link to={"/games/" + props.game.title} className="btn details-btn">
+                <Link to={"/catalog/" + props.game._id} className="btn details-btn">
                     Details
                 </Link>
             </div>

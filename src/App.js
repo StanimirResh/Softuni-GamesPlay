@@ -1,5 +1,5 @@
-import { Header } from "./components/common/Header";
-import { Main } from "./components/common/Main";
+import { Header } from "./components/Common/Header";
+import { Main } from "./components/Common/Main";
 function App() {
   return (
     <div id="box">

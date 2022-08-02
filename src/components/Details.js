@@ -1,36 +1,43 @@
-export const Details = () => {
+import { useParams } from "react-router-dom"
+
+
+export const Details = (props) => {
+    const { gameId } = useParams();
+    console.log(props.games);
+    console.log(gameId);
+    const game = props.games.find(x => x._id === gameId);
+    console.log(game);
+
     return (
         <section id="game-details">
             {/*Details Page*/}
             <h1>Game Details</h1>
             <div className="info-section">
                 <div className="game-header">
-                    <img alt="img" className="game-img" src="images/MineCraft.png" />
-                    <h1>Bright</h1>
-                    <span className="levels">MaxLevel: 4</span>
-                    <p className="type">Action, Crime, Fantasy</p>
+                    <img alt="img" className="game-img" src={game.imageUrl} />
+                    <h1>{game.title}</h1>
+                    <span className="levels">MaxLevel: {game.maxLevel}</span>
+                    <p className="type">{game.category}</p>
                 </div>
                 <p className="text">
-                    Set in a world where fantasy creatures live side by side with humans.
-                    A human cop is forced to work with an Orc to find a weapon everyone is
-                    prepared to kill for. Set in a world where fantasy creatures live side
-                    by side with humans. A human cop is forced to work with an Orc to find
-                    a weapon everyone is prepared to kill for.
+                    {game.summary}
                 </p>
                 {/* Bonus ( for Guests and Users ) */}
                 <div className="details-comments">
                     <h2>Comments:</h2>
+                    {game.comments?.length > 0
+                        ? game.comments.map(x => {
+                            return (
+                                <li className="comment">
+                                    <p>{x}</p>
+                                </li>
+                            )
+                        })
+                        : <p className="no-comment">No comments.</p>}
                     <ul>
-                        {/* list all comments for current game (If any) */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
+
                     </ul>
-                    {/* Display paragraph: If there are no games in the database */}
-                    <p className="no-comment">No comments.</p>
+
                 </div>
                 {/* Edit/Delete buttons ( Only for creator of this game )  */}
                 <div className="buttons">

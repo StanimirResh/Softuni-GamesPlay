@@ -7,9 +7,9 @@ export const Catalog = (props) => {
 
             <h1>All Games</h1>
             {/* Display div: with information about every game (if any) */}
-            {props.games.map(x => <GameItem game={x}/>)}
-            {/* Display paragraph: If there is no games  */}
-            <h3 className="no-articles">No articles yet</h3>
+            {(props.games.length > 0) 
+            ? props.games.map(x => <GameItem key={x._id} game={x} />) 
+            : <h3 className="no-articles">No articles yet</h3>}
         </section>
     )
 }
