@@ -18,7 +18,7 @@ export const Login = () => {
         }))
     }
 
-    const onSubmitHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
 
         authService.login(values.email, values.password)
@@ -26,13 +26,14 @@ export const Login = () => {
                 userLogin(authData);
                 navigate('/')
             })
+            .catch(err => console.log(err))
 
 
     }
 
     return (
         <section id="login-page" className="auth">
-            <form id="login" onSubmit={onSubmitHandler}>
+            <form id="login" onSubmit={submitHandler}>
                 <div className="container">
                     <div className="brand-logo" />
                     <h1>Login</h1>

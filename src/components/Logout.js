@@ -16,7 +16,7 @@ export const Logout = () => {
             .catch(() => {
                 navigate('/')
             })
-    })
+    }, [navigate, user, userLogout])
 
     return null;
 }
