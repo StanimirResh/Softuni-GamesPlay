@@ -1,10 +1,38 @@
-import { Link } from "react-router-dom"
-
+import { useContext, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { AuthContext } from "../contexts/AuthContext"
+import * as authService from "../services/authService"
 
 export const Login = () => {
+    const [values, setValues] = useState({
+        email: '',
+        password: '',
+    })
+
+    const { userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const changeHandler = (e) => {
+        setValues(oldValues => ({
+            ...oldValues,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        authService.login(values.email, values.password)
+            .then(authData => {
+                userLogin(authData);
+                navigate('/')
+            })
+
+
+    }
+
     return (
         <section id="login-page" className="auth">
-            <form id="login">
+            <form id="login" onSubmit={onSubmitHandler}>
                 <div className="container">
                     <div className="brand-logo" />
                     <h1>Login</h1>
@@ -14,9 +42,17 @@ export const Login = () => {
                         id="email"
                         name="email"
                         placeholder="Sokka@gmail.com"
+                        value={values.email}
+                        onChange={changeHandler}
                     />
                     <label htmlFor="login-pass">Password:</label>
-                    <input type="password" id="login-password" name="password" />
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        value={values.password}
+                        onChange={changeHandler}
+                    />
                     <input type="submit" className="btn submit" defaultValue="Login" />
                     <p className="field">
                         <span>
