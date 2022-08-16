@@ -46,11 +46,18 @@ export const Main = () => {
         })
     }
 
+    const deleteGame = () => {
+        gameService.getAll()
+            .then(result => {
+                setGames(result)
+            })
+    }
+
 
 
     return (
         <main id="main-content">
-            <GameContext.Provider value={{ games, addGame, editGame }}>
+            <GameContext.Provider value={{ games, addGame, editGame, deleteGame }}>
                 <Routes>
                     <Route path="/" element={<Home games={games} />} />
                     <Route path="/login" element={<Login />} />
@@ -60,7 +67,7 @@ export const Main = () => {
                     <Route path="/create" element={<Create />} />
                     <Route path="/catalog/:gameId" element={<Details games={games} addComent={addComent} />} />
                     <Route path="/catalog/edit/:gameId" element={<Edit />} />
-                    <Route path="/catalog/delete/:gameId" element={<Delete />}/>
+                    <Route path="/catalog/delete/:gameId" element={<Delete />} />
                 </Routes>
             </GameContext.Provider>
         </main>

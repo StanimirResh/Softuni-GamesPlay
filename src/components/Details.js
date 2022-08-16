@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
-
+import * as gameService from '../services/gameService'
 
 export const Details = (props) => {
     const { gameId } = useParams();
-    const game = props.games.find(x => x._id === gameId);
+    const [currGame, setCurrGame] = useState({});
 
     const [comment, setComment] = useState({
         comment: "",
         username: ""
     })
 
+    useEffect(() => {
+        gameService.getOne(gameId)
+            .then(result => {
+                setCurrGame(result);
+            });
+    }, [gameId])
     const addCommentHandler = (e) => {
         e.preventDefault();
 
@@ -30,19 +36,19 @@ export const Details = (props) => {
             <h1>Game Details</h1>
             <div className="info-section">
                 <div className="game-header">
-                    <img alt="img" className="game-img" src={game.imageUrl} />
-                    <h1>{game.title}</h1>
-                    <span className="levels">MaxLevel: {game.maxLevel}</span>
-                    <p className="type">{game.category}</p>
+                    <img alt="img" className="game-img" src={currGame.imageUrl} />
+                    <h1>{currGame.title}</h1>
+                    <span className="levels">MaxLevel: {currGame.maxLevel}</span>
+                    <p className="type">{currGame.category}</p>
                 </div>
                 <p className="text">
-                    {game.summary}
+                    {currGame.summary}
                 </p>
                 {/* Bonus ( for Guests and Users ) */}
                 <div className="details-comments">
                     <h2>Comments:</h2>
-                    {game.comments?.length > 0
-                        ? game.comments.map(x => {
+                    {currGame.comments?.length > 0
+                        ? currGame.comments.map(x => {
                             return (
                                 <li className="comment">
                                     <p>{x}</p>
