@@ -1,7 +1,6 @@
-const baseUrl = "http://localhost:3030/"
+import * as request from './requester'
 
-export const getAll = () => {
-    return fetch(`${baseUrl}data/games?sortBy=_createdOn%20desc&distinct=category`)
-        .then(res => res.json())
-        
-}
+
+const baseUrl = "http://localhost:3030/data/games"
+
+export const getAll = () => request.get(baseUrl)
