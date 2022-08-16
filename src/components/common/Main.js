@@ -1,6 +1,7 @@
 import { Home } from "../Home/Home"
 import { Login } from "../Login"
 import { Register } from "../Register"
+import { Logout } from "../Logout"
 import { Catalog } from "../Catalog/Catalog"
 import { Create } from "../Create"
 import { Details } from "../Details"
@@ -37,6 +38,7 @@ export const Main = () => {
                 <Route path="/" element={<Home games={games} />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
                 <Route path="/catalog" element={<Catalog games={games} />} />
                 <Route path="/create" element={<Create />} />
                 <Route path="/catalog/:gameId" element={<Details games={games} addComent={addComent} />} />
