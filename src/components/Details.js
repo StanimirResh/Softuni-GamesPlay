@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 export const Details = (props) => {
@@ -57,12 +57,8 @@ export const Details = (props) => {
                 </div>
                 {/* Edit/Delete buttons ( Only for creator of this game )  */}
                 <div className="buttons">
-                    <a href="/" className="button">
-                        Edit
-                    </a>
-                    <a href="/" className="button">
-                        Delete
-                    </a>
+                    <Link to={"/catalog/edit/" + gameId} className="button">Edit</Link>
+                    <Link to={"/catalog/delete/" + gameId} className="button">Delete</Link>
                 </div>
             </div>
             {/* Bonus */}

@@ -1,13 +1,14 @@
 import { Header } from "./components/Common/Header";
 import { Main } from "./components/Common/Main";
 import { AuthContext } from "./contexts/AuthContext"
-import { useState } from "react"
+import { useLocalStorage } from "./hooks/useLocaleStorage";
 
 function App() {
-  const [auth, setAuth] = useState([]);
+  const [auth, setAuth] = useLocalStorage('auth', {});
 
   const userLogout = () => {
     setAuth({});
+    localStorage.clear();
   }
   const userLogin = (authData) => {
     setAuth(authData)
