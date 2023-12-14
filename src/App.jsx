@@ -1,5 +1,5 @@
-import { Header } from "./components/Common/Header";
-import { Main } from "./components/Common/Main";
+import { Header } from "./components/common/Header.jsx";
+import { Main } from "./components/common/Main.jsx"
 import { AuthContext } from "./contexts/AuthContext"
 import { useLocalStorage } from "./hooks/useLocaleStorage";
 
