@@ -1,28 +1,16 @@
 import { Header } from "./components/common/Header.jsx";
-import { Main } from "./components/common/Main.jsx"
-import { AuthContext } from "./contexts/AuthContext"
-import { useLocalStorage } from "./hooks/useLocaleStorage";
+import { Main } from "./components/common/Main.jsx";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
-  const [auth, setAuth] = useLocalStorage('auth', {});
-
-  const userLogout = () => {
-    setAuth({});
-    localStorage.clear();
-  }
-  const userLogin = (authData) => {
-    setAuth(authData)
-  }
-  return (
-    <div id="box">
-
-      <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
-        <Header />
-        <Main />
-      </AuthContext.Provider>
-
-    </div>
-  );
+    return (
+        <div id="box">
+            <AuthProvider>
+                <Header />
+                <Main />
+            </AuthProvider>
+        </div>
+    );
 }
 
 export default App;
